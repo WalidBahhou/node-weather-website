@@ -39,7 +39,7 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help',
-        message: 'This is a generic help message, rendered via hbs !!',
+        message: 'This is the help page for the node.js weather website',
         name: 'Walid'
     })
 })
@@ -63,7 +63,10 @@ app.get('/weather', (req, res) => {
                 address: req.query.address,
                 location,
                 forecast: forecastData.summary,
-                temp: forecastData.temp
+                temp: forecastData.temp,
+                min: forecastData.tempmin,
+                max: forecastData.tempmax,
+                windspeed: forecastData.windspeed
             })
           })
       })
@@ -71,18 +74,6 @@ app.get('/weather', (req, res) => {
 
 })
 
-app.get('/products', (req, res) => {
-    if (!req.query.search) {
-        return res.send({
-            error: 'You must provide a search term!'
-        })
-    }
-
-    console.log(req.query)
-    res.send({
-        products: []
-    })
-})
 
 
 app.get('/help/*', (req, res) => {

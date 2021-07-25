@@ -17,8 +17,10 @@ request ({url, json: true}, (error, { body }) => {
     } else {
         callback(undefined, {
             temp: body.current.temp,
-            precip: body.daily[0].rain,
-            summary: body.current.weather[0].description
+            summary: body.current.weather[0].description,
+            tempmin: body.daily[0].temp.min,
+            tempmax: body.daily[0].temp.max,
+            windspeed: body.daily[0].wind_speed
         })
     }
 })
